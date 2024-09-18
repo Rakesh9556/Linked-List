@@ -99,17 +99,49 @@ Node* mergeTwoSortedList(Node* list1, Node* list2) {
 
     return head;
 }
+
+
+Node* removeDuplicatesFromSortedList(Node* head) {
+    if(head == nullptr || head->next == nullptr) return head;
+
+    Node* temp = head;
+
+    while(temp != nullptr && temp->next != nullptr) {
+        if(temp->data == temp->next->data) {
+            Node* duplicate = temp->next;
+            temp->next = temp->next->next;
+            delete duplicate;
+        }
+        else {
+            temp = temp->next;
+        }
+    }
+    return head;
+}
 int main() {
-    vector<int> arr1 = getArray();
-    vector<int> arr2 = getArray();
+
+// Merge two sorted list
+    // vector<int> arr1 = getArray();
+    // vector<int> arr2 = getArray();
+
+    // Node* list1 = convertArr2LL(arr1);
+    // Node* list2 = convertArr2LL(arr2);
+
+    // Node* head = mergeTwoSortedList(list1, list2);
+    // printLL(head);
 
 
-    Node* list1 = convertArr2LL(arr1);
-    Node* list2 = convertArr2LL(arr2);
 
-    Node* head = mergeTwoSortedList(list1, list2);
+// Remove duplicate from sorted list
+    vector<int> arr =getArray();
 
+    Node* head = convertArr2LL(arr);
+    head = removeDuplicatesFromSortedList(head);
     printLL(head);
+
+
+
+
     
     
     return 0;
